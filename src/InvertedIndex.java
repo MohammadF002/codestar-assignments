@@ -11,7 +11,7 @@ public class InvertedIndex {
     public void createInvertedIndexFromFiles(String targetLocation) throws FileNotFoundException {
         HashMap<String, Set<String>> map = new HashMap<>();
         FileHandler fileHandler = new FileHandler();
-        List<File> files = fileHandler.getAllFiles(targetLocation);
+        List<File> files = fileHandler.gatherAllFiles(targetLocation);
         for (File file : files) {
             List<String> words = fileHandler.getWordsInFile(file);
             for (String word : words) {

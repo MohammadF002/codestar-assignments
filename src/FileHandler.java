@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class FileHandler {
-    public List<File> getAllFiles(String targetPath) {
+    public List<File> gatherAllFiles(String targetPath) {
         File folder = new File(targetPath);
         List<File> result = new ArrayList<>();
         for (File file : List.of(Objects.requireNonNull(folder.listFiles()))) {
