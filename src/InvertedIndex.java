@@ -31,4 +31,8 @@ public class InvertedIndex {
             result.add(this.invertedIndexMap.get(word));
         return result;
     }
+
+    public Set<String> getDocIdsByWord (String word) {
+        return invertedIndexMap.get(word);
+    }
 }
