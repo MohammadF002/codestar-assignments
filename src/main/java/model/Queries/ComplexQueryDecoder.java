@@ -1,11 +1,13 @@
-package src.Queries;
+package model.Queries;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class ComplexQueryDecoder{
-    public void decode(ComplexQuery queryToBeDecoded) {
-        String[] args = queryToBeDecoded.getQueryRequest().split(" ");
+    public HashMap<String,Set<String>> decode(String queryRequest) {
+        String[] args = queryRequest.split(" ");
         Set<String> including = new HashSet<>();
         Set<String> excluding = new HashSet<>();
         Set<String> intersection = new HashSet<>();
@@ -16,6 +18,10 @@ public class ComplexQueryDecoder{
                 excluding.add(token.substring(1).toUpperCase());
             else intersection.add(token.toUpperCase());
         }
-        queryToBeDecoded.setSets(including,excluding,intersection);
+        return new HashMap<>() {{
+            put("including", including);
+            put("excluding", excluding);
+            put("intersection", intersection);
+        }};
     }
 }

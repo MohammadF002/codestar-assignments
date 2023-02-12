@@ -1,8 +1,10 @@
-package src;
+package view;
 
 
 
-import src.Queries.ComplexQuery;
+
+import model.InvertedIndex;
+import model.Queries.ComplexQuery;
 
 import java.util.*;
 

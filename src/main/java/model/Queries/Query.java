@@ -1,6 +1,4 @@
-package src.Queries;
-
-import src.InvertedIndex;
+package model.Queries;
 
 import java.util.Set;
 
