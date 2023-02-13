@@ -4,7 +4,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-public class ComplexQueryDecoder{
+public class ComplexQueryDecoder implements QueryDecoder {
+    @Override
     public HashMap<String,Set<String>> decode(String queryRequest) {
         String[] args = queryRequest.split(" ");
         Set<String> including = new HashSet<>();

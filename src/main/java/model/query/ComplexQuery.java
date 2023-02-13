@@ -15,7 +15,7 @@ public class ComplexQuery implements Query {
 
     public ComplexQuery(String queryRequest, InvertedIndex invertedIndex) {
         this.invertedIndex = invertedIndex;
-        ComplexQueryDecoder decoder = new ComplexQueryDecoder();
+        QueryDecoder decoder = new ComplexQueryDecoder();
         var sets = decoder.decode(queryRequest);
         this.including = sets.get("including");
         this.excluding = sets.get("excluding");
