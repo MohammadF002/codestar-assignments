@@ -5,10 +5,10 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-public class ComplexQueryCollector implements QueryCollector {
+public class ComplexQueryResponseGenerator implements QueryResponseGenerator {
     @Override
-    public Set<String> collect(Set<String> including, Set<String> excluding, Set<String> intersection,
-                               HashMap<String, Set<String>> invertedIndexMap) {
+    public Set<String> generate(Set<String> including, Set<String> excluding, Set<String> intersection,
+                                HashMap<String, Set<String>> invertedIndexMap) {
         Set<String> res;
         res = includeAllFromInvertedIndex(including, invertedIndexMap);
         if (res.isEmpty())

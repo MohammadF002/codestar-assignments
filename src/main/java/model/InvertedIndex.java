@@ -1,29 +1,29 @@
 package model;
 
-import java.io.IOException;
+import model.dataSource.DataSource;
+
 import java.util.*;
 
 public class InvertedIndex {
     private HashMap<String, Set<String>> invertedIndexMap;
 
 
-    public void createInvertedIndexFromFiles(String targetLocation) throws IOException {
-        HashMap<String, Set<String>> map = new HashMap<>();
-        FileHandler fileHandler = new FileHandler();
-        List<String> fileNames = fileHandler.gatherAllFileNames(targetLocation);
-        for (String fileName : fileNames) {
-            List<String> words = fileHandler.getWordsInFile("EnglishData\\" + fileName);
-            mapFiller(map, fileName, words);
+    public void createInvertedIndexFromSource(DataSource source) {
+        this.invertedIndexMap = new HashMap<>();
+        List<DataSource> sources = source.fetchSource();
+        for (DataSource src:sources) {
+            List<String> words = src.fetchWordsFromSource();
+            mapFiller(src.getSourceName(), words);
         }
-        this.invertedIndexMap = map;
     }
 
-    private void mapFiller(HashMap<String, Set<String>> map, String fileName, List<String> words) {
+    private void mapFiller(String fileName, List<String> words) {
         for (String word : words) {
-            if (map.containsKey(word.toUpperCase()))
-                map.get(word.toUpperCase()).add(fileName);
+            word = word.toUpperCase();
+            if (invertedIndexMap.containsKey(word))
+                invertedIndexMap.get(word).add(fileName);
             else {
-                map.put(word.toUpperCase(), new HashSet<>(Collections.singleton(fileName)));
+                invertedIndexMap.put(word, new HashSet<>(Collections.singleton(fileName)));
             }
         }
     }

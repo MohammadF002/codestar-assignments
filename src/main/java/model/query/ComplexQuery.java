@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class ComplexQuery implements Query {
 
-    private final QueryCollector collector;
+    private final QueryResponseGenerator collector;
     private final InvertedIndex invertedIndex;
     private final Set<String> including;
     private final Set<String> excluding;
@@ -20,13 +20,13 @@ public class ComplexQuery implements Query {
         this.including = sets.get("including");
         this.excluding = sets.get("excluding");
         this.intersection = sets.get("intersection");
-        collector = new ComplexQueryCollector();
+        collector = new ComplexQueryResponseGenerator();
     }
 
 
     @Override
     public Set<String> sendQueryResponse() {
-        return this.collector.collect(including, excluding, intersection, invertedIndex.getMap());
+        return this.collector.generate(including, excluding, intersection, invertedIndex.getMap());
     }
 
 }
