@@ -1,19 +1,21 @@
 package model;
 
-import model.dataSource.DataSource;
+import lombok.Getter;
+import model.crawler.Crawler;
+import model.dataSource.SourceWordExtractor;
 
 import java.util.*;
 
 public class InvertedIndex {
+    @Getter
     private HashMap<String, Set<String>> invertedIndexMap;
 
 
-    public void createInvertedIndexFromSource(DataSource source) {
+    public void createInvertedIndexFromSource(Crawler crawler, SourceWordExtractor extractor, String sourceLocation) {
         this.invertedIndexMap = new HashMap<>();
-        List<DataSource> sources = source.fetchSource();
-        for (DataSource src:sources) {
-            List<String> words = src.fetchWordsFromSource();
-            mapFiller(src.getSourceName(), words);
+        for (String sourceLocations:crawler.fetchDataLocations(sourceLocation)) {
+            List<String> words = extractor.fetchWordsFromSource(sourceLocations);
+            mapFiller(sourceLocations, words);
         }
     }
 
@@ -28,7 +30,4 @@ public class InvertedIndex {
         }
     }
 
-    public HashMap<String, Set<String>> getMap() {
-        return invertedIndexMap;
-    }
 }

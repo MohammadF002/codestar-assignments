@@ -26,7 +26,7 @@ public class ComplexQuery implements Query {
 
     @Override
     public Set<String> sendQueryResponse() {
-        return this.collector.generate(including, excluding, intersection, invertedIndex.getMap());
+        return this.collector.generate(including, excluding, intersection, invertedIndex.getInvertedIndexMap());
     }
 
 }

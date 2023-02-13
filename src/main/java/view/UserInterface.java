@@ -17,7 +17,7 @@ public class UserInterface {
         while (!input.equals("end")) {
             ComplexQuery query = new ComplexQuery(input, invertedIndex);
             for (String s : query.sendQueryResponse())
-                System.out.printf("%-10s",s);
+                System.out.print(s + "\t");
             System.out.println("\nEnter phrase(\"end\" to finish the program):");
             input = myScanner.nextLine();
         }
