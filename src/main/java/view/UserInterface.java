@@ -4,7 +4,7 @@ package view;
 
 
 import model.InvertedIndex;
-import model.Queries.ComplexQuery;
+import model.query.ComplexQuery;
 
 import java.util.*;
 

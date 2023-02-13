@@ -1,4 +1,4 @@
-package model.Queries;
+package model.query;
 
 import java.util.HashMap;
 import java.util.Set;

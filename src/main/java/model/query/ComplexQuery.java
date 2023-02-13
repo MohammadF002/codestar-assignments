@@ -1,4 +1,4 @@
-package model.Queries;
+package model.query;
 
 import model.InvertedIndex;
 

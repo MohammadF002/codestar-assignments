@@ -1,4 +1,4 @@
-package model.Queries;
+package model.query;
 
 
 import java.util.HashMap;
@@ -11,7 +11,10 @@ public class ComplexQueryCollector implements QueryCollector {
                                HashMap<String, Set<String>> invertedIndexMap) {
         Set<String> res;
         res = includeAllFromInvertedIndex(including, invertedIndexMap);
-        res.retainAll(retainAllFromInvertedIndex(intersection, invertedIndexMap));
+        if (res.isEmpty())
+            res.addAll(retainAllFromInvertedIndex(intersection, invertedIndexMap));
+        else
+            res.retainAll(retainAllFromInvertedIndex(intersection, invertedIndexMap));
         res.removeAll(includeAllFromInvertedIndex(excluding, invertedIndexMap));
         return res;
     }
