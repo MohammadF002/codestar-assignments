@@ -1,5 +1,3 @@
-
-
 import model.InvertedIndex;
 import model.crawler.BasicFileCrawler;
 import model.dataSource.FileWordExtractor;
