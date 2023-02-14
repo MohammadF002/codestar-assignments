@@ -3,25 +3,27 @@ package model.query;
 import model.InvertedIndex;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 public class ComplexQuery implements Query {
 
     private final QueryResponseGenerator responseGenerator;
     private final InvertedIndex invertedIndex;
-    private Set<String> including;
-    private Set<String> excluding;
-    private Set<String> intersection;
+    private List<String> including;
+    private List<String> excluding;
+    private List<String> intersection;
 
 
-    public ComplexQuery(String queryRequest, InvertedIndex invertedIndex, QueryDecoder decoder) {
+    public ComplexQuery(String queryRequest, InvertedIndex invertedIndex, QueryDecoder decoder,
+                        QueryResponseGenerator generator) {
         this.invertedIndex = invertedIndex;
         var sets = decoder.decode(queryRequest);
         setFiller(sets);
-        responseGenerator = new ComplexQueryResponseGenerator();
+        responseGenerator = generator;
     }
 
-    private void setFiller(HashMap<String, Set<String>> args) {
+    private void setFiller(HashMap<String, List<String>> args) {
         this.including = args.get("including");
         this.intersection = args.get("intersection");
         this.excluding = args.get("excluding");
