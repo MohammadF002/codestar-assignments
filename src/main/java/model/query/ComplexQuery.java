@@ -2,7 +2,6 @@ package model.query;
 
 import model.InvertedIndex;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
