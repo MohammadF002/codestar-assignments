@@ -12,10 +12,12 @@ public class ComplexQueryResponseGenerator implements QueryResponseGenerator {
                                 HashMap<String, Set<String>> invertedIndexMap) {
         Set<String> res;
         res = includeAllFromInvertedIndex(including, invertedIndexMap);
-        if (res.isEmpty())
-            res.addAll(retainAllFromInvertedIndex(intersection, invertedIndexMap));
-        else
-            res.retainAll(retainAllFromInvertedIndex(intersection, invertedIndexMap));
+        if (!intersection.isEmpty()) {
+            if (res.isEmpty())
+                res.addAll(retainAllFromInvertedIndex(intersection, invertedIndexMap));
+            else
+                res.retainAll(retainAllFromInvertedIndex(intersection, invertedIndexMap));
+        }
         res.removeAll(includeAllFromInvertedIndex(excluding, invertedIndexMap));
         return res;
     }

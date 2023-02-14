@@ -18,15 +18,15 @@ public class ComplexQuery implements Query {
     public ComplexQuery(String queryRequest, InvertedIndex invertedIndex, QueryDecoder decoder,
                         QueryResponseGenerator generator) {
         this.invertedIndex = invertedIndex;
-        var sets = decoder.decode(queryRequest);
-        setFiller(sets);
+        var decoderResponse = decoder.decode(queryRequest);
+        setFiller(decoderResponse);
         responseGenerator = generator;
     }
 
-    private void setFiller(HashMap<String, List<String>> args) {
-        this.including = args.get("including");
-        this.intersection = args.get("intersection");
-        this.excluding = args.get("excluding");
+    private void setFiller(DecoderResponse response) {
+        this.including = response.getArgs().get(0);
+        this.intersection = response.getArgs().get(2);
+        this.excluding = response.getArgs().get(1);
     }
 
 
