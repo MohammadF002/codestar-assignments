@@ -25,10 +25,10 @@ public class ComplexQueryResponseGenerator implements QueryResponseGenerator {
     }
 
     private Set<String> retainAllFromInvertedIndex(List<String> words, HashMap<String, Set<String>> invertedIndexMap) {
-        var sets = words.stream().filter(invertedIndexMap::containsKey).map(invertedIndexMap::get).toList();
+        List<Set<String>> sets = words.stream().filter(invertedIndexMap::containsKey).map(invertedIndexMap::get).toList();
         if (sets.isEmpty())
             return new HashSet<>();
-        var result = sets.get(0);
+        var result = new HashSet<>(sets.get(0));
         for (Set set : sets)
             result.retainAll(set);
         return result;

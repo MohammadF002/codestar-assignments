@@ -14,7 +14,7 @@ public class InvertedIndex {
     public void createInvertedIndexFromSource(Crawler crawler, SourceWordExtractor extractor, String sourceLocation) {
         this.invertedIndexMap = new HashMap<>();
         for (String sourceLocations:crawler.fetchDataLocations(sourceLocation)) {
-            List<String> words = extractor.fetchWordsFromSource(sourceLocations);
+            List<String> words = extractor.extractWordsFromSource(sourceLocations);
             mapFiller(sourceLocations, words);
         }
     }

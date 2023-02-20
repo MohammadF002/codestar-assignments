@@ -9,7 +9,7 @@ import java.util.List;
 public class FileWordExtractor implements SourceWordExtractor {
 
     @Override
-    public List<String> fetchWordsFromSource(String sourceLocation) {
+    public List<String> extractWordsFromSource(String sourceLocation) {
         String fileString;
         try {
             fileString = new String(Files.readAllBytes(Paths.get(sourceLocation)));
